@@ -1,2 +1,2 @@
-# lib-ltd
+# `{Ltd.}`
 A simple C++ framework and library
