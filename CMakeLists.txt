@@ -31,6 +31,11 @@ add_executable(fmt_float ${TEST_DIR}/fmt_float.cpp)
 target_include_directories(fmt_float PUBLIC ${INC_DIR})
 target_link_libraries(fmt_float ltd)
 
+# Create test executable fmt_string
+add_executable(fmt_string ${TEST_DIR}/fmt_string.cpp)
+target_include_directories(fmt_string PUBLIC ${INC_DIR})
+target_link_libraries(fmt_string ltd)
+
 enable_testing()
 
 # add_test(NAME Test COMMAND test_unit 0)
@@ -68,4 +73,15 @@ do_fmt_float_test(fmt_float 3 "-ok-")
 do_fmt_float_test(fmt_float 4 "-ok-")
 do_fmt_float_test(fmt_float 5 "-ok-")
 do_fmt_float_test(fmt_float 6 "-ok-")
+
+function(do_fmt_string_test target arg result)
+  add_test(NAME Fmt-Str-${arg} COMMAND ${target} ${arg})
+  set_tests_properties(Fmt-Str-${arg}
+    PROPERTIES PASS_REGULAR_EXPRESSION ${result}
+    )
+endfunction()
+
+do_fmt_string_test(fmt_string 0 "-ok-")
+do_fmt_string_test(fmt_string 1 "-ok-")
+do_fmt_string_test(fmt_string 2 "-ok-")
 
