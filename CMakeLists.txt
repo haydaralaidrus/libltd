@@ -17,9 +17,9 @@ add_library(ltd STATIC ${SOURCES})
 target_include_directories(ltd PUBLIC ${INC_DIR})
 
 # Create test executable test_unit
-add_executable(test_unit ${TEST_DIR}/test.cpp)
-target_include_directories(test_unit PUBLIC ${INC_DIR})
-target_link_libraries(test_unit ltd)
+add_executable(cli_test ${TEST_DIR}/cli_test.cpp)
+target_include_directories(cli_test PUBLIC ${INC_DIR})
+target_link_libraries(cli_test ltd)
 
 # Create test executable fmt_int
 add_executable(fmt_int ${TEST_DIR}/fmt_int.cpp)
@@ -38,50 +38,22 @@ target_link_libraries(fmt_string ltd)
 
 enable_testing()
 
-# add_test(NAME Test COMMAND test_unit 0)
-# set_tests_properties(Test
-#  PROPERTIES PASS_REGULAR_EXPRESSION "-ok-"
-# )
+add_test(NAME Cli-Flags COMMAND cli_test -a)
+set_tests_properties(Cli-Flags
+PROPERTIES PASS_REGULAR_EXPRESSION "-ok-"
+)
 
-# define a function adding fmt_int
-function(do_fmt_int_test target arg result)
-  add_test(NAME Fmt-Int-${arg} COMMAND ${target} ${arg})
-  set_tests_properties(Fmt-Int-${arg}
-    PROPERTIES PASS_REGULAR_EXPRESSION ${result}
-    )
-endfunction()
+add_test(NAME Fmt-Int COMMAND fmt_int -a)
+set_tests_properties(Fmt-Int
+PROPERTIES PASS_REGULAR_EXPRESSION "-ok-"
+)
 
-do_fmt_int_test(fmt_int 0 "-ok-")
-do_fmt_int_test(fmt_int 1 "-ok-")
-do_fmt_int_test(fmt_int 2 "-ok-")
-do_fmt_int_test(fmt_int 3 "-ok-")
-do_fmt_int_test(fmt_int 4 "-ok-")
-do_fmt_int_test(fmt_int 5 "-ok-")
-do_fmt_int_test(fmt_int 6 "-ok-")
+add_test(NAME Fmt-Float COMMAND fmt_float -a)
+set_tests_properties(Fmt-Float
+PROPERTIES PASS_REGULAR_EXPRESSION "-ok-"
+)
 
-function(do_fmt_float_test target arg result)
-  add_test(NAME Fmt-Float-${arg} COMMAND ${target} ${arg})
-  set_tests_properties(Fmt-Float-${arg}
-    PROPERTIES PASS_REGULAR_EXPRESSION ${result}
-    )
-endfunction()
-
-do_fmt_float_test(fmt_float 0 "-ok-")
-do_fmt_float_test(fmt_float 1 "-ok-")
-do_fmt_float_test(fmt_float 2 "-ok-")
-do_fmt_float_test(fmt_float 3 "-ok-")
-do_fmt_float_test(fmt_float 4 "-ok-")
-do_fmt_float_test(fmt_float 5 "-ok-")
-do_fmt_float_test(fmt_float 6 "-ok-")
-
-function(do_fmt_string_test target arg result)
-  add_test(NAME Fmt-Str-${arg} COMMAND ${target} ${arg})
-  set_tests_properties(Fmt-Str-${arg}
-    PROPERTIES PASS_REGULAR_EXPRESSION ${result}
-    )
-endfunction()
-
-do_fmt_string_test(fmt_string 0 "-ok-")
-do_fmt_string_test(fmt_string 1 "-ok-")
-do_fmt_string_test(fmt_string 2 "-ok-")
-
+add_test(NAME Fmt-Str COMMAND fmt_string -a)
+set_tests_properties(Fmt-Str
+PROPERTIES PASS_REGULAR_EXPRESSION "-ok-"
+)

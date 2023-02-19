@@ -75,6 +75,7 @@ namespace ltd
         std::vector<std::function<void()>> test_cases;
 
         bool failed;
+        int verbosity;
 
     public:
         /**
