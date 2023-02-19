@@ -16,7 +16,7 @@
  */
 namespace ltd {}
 
-#include "cli_arguments.hpp"
+#include "cli_flags.hpp"
 #include "err.hpp"
 #include "fmt.hpp"
 #include "std_alias.hpp"

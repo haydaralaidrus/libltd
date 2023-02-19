@@ -1,5 +1,5 @@
-#ifndef _LTD_INCLUDE_CLI_ARGUMENTS_H_
-#define _LTD_INCLUDE_CLI_ARGUMENTS_H_
+#ifndef _LTD_INCLUDE_CLI_FLAGS_HPP_
+#define _LTD_INCLUDE_CLI_FLAGS_HPP_
 
 #include <variant>
 #include <vector>
@@ -16,7 +16,7 @@ namespace ltd
      * Provides helper functions for handling with command-line arguments.
      * 
      * @details
-     * Class cli_arguments implements command line arguments helper tools.
+     * Class cli_flags implements command line arguments helper tools.
      * 
      * This class provides command line arguments parser and simple help system.
      * To use this class, initialize it with `argc` and `argv` taken from `main()`.
@@ -27,7 +27,7 @@ namespace ltd
      * ```C++
      *          int main(int argc, char *argv[])
      *          {
-     *              cli_arguments args;
+     *              cli_flags args;
      *              int debug     = 0;
      *              int verbosity = 0;
      * 
@@ -46,7 +46,7 @@ namespace ltd
      *          }
      * ```
      */
-    class cli_arguments
+    class cli_flags
     {
     private:
         struct option
@@ -85,7 +85,7 @@ namespace ltd
          * @brief
          * Construct a new cli args object
          */
-        cli_arguments();
+        cli_flags();
 
         /**
          * @brief
@@ -197,7 +197,7 @@ namespace ltd
          */
         void print_help(size_t indent) const;
 
-    }; // class cli_arguments
+    }; // class cli_flags
 } // namespace ltd
 
-#endif // _LTD_INCLUDE_CLI_ARGUMENTS_H_
+#endif // _LTD_INCLUDE_CLI_FLAGS_HPP_

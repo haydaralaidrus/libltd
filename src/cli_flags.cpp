@@ -2,15 +2,15 @@
 #include <cstring>
 #include <algorithm>
 
-#include "../inc/cli_arguments.hpp"
+#include "../inc/cli_flags.hpp"
 #include "../inc/fmt.hpp"
 
 namespace ltd
 {
-    cli_arguments::cli_arguments()
+    cli_flags::cli_flags()
     {}
 
-    err::type cli_arguments::bind(int* value, char short_opt, const std::string& long_opt, const std::string& help)
+    err::type cli_flags::bind(int* value, char short_opt, const std::string& long_opt, const std::string& help)
     {
         option opt;
 
@@ -23,7 +23,7 @@ namespace ltd
         return err::no_error;
     }
 
-    err::type cli_arguments::bind(std::string* value, char short_opt, const std::string& long_opt, const std::string& help)
+    err::type cli_flags::bind(std::string* value, char short_opt, const std::string& long_opt, const std::string& help)
     {
         option opt;
 
@@ -36,7 +36,7 @@ namespace ltd
         return err::no_error;
     }
 
-    err::type cli_arguments::bind(std::vector<const char*>* value, char short_opt, const std::string& long_opt, const std::string& help)
+    err::type cli_flags::bind(std::vector<const char*>* value, char short_opt, const std::string& long_opt, const std::string& help)
     {
         option opt;
 
@@ -49,14 +49,14 @@ namespace ltd
         return err::no_error;
     }
 
-    void cli_arguments::iterate_options(void (func)(std::variant<int*, std::string*, std::vector<const char*>*>, char, const std::string&, const std::string&))
+    void cli_flags::iterate_options(void (func)(std::variant<int*, std::string*, std::vector<const char*>*>, char, const std::string&, const std::string&))
     {
         for (auto opt : options) {
             func(opt.value, opt.short_opt, opt.long_opt, opt.help);
         }
     }
 
-    ret<char, err::type> cli_arguments::get_short_opt(const std::string& long_opt) const
+    ret<char, err::type> cli_flags::get_short_opt(const std::string& long_opt) const
     {
         auto it = std::find_if(options.begin(), options.end(), [&long_opt](const option& opt) -> bool {
             return opt.long_opt == long_opt;
@@ -68,7 +68,7 @@ namespace ltd
         return {(*it).short_opt, err::no_error};
     }
 
-    ret<const std::string&, err::type> cli_arguments::get_long_opt(char short_opt) const
+    ret<const std::string&, err::type> cli_flags::get_long_opt(char short_opt) const
     {
         auto it = std::find_if(options.begin(), options.end(), [short_opt](const option& opt) -> bool {
             return opt.short_opt == short_opt;
@@ -80,7 +80,7 @@ namespace ltd
         return {(*it).long_opt, err::no_error};
     }
 
-    ret<int, err::type> cli_arguments::get_index(char short_opt) const
+    ret<int, err::type> cli_flags::get_index(char short_opt) const
     {
         int index = 0;
 
@@ -94,7 +94,7 @@ namespace ltd
         return {-1, err::not_found};
     }
 
-    ret<const char*, err::type> cli_arguments::at(size_t index) const
+    ret<const char*, err::type> cli_flags::at(size_t index) const
     {
         if (index < argc)
             return {argv[index], err::no_error};
@@ -102,7 +102,7 @@ namespace ltd
         return {nullptr, err::index_out_of_bound};
     }
 
-    ret<int, err::type> cli_arguments::get_argument(char short_opt)
+    ret<int, err::type> cli_flags::get_argument(char short_opt)
     {
         int index = 0;
 
@@ -116,7 +116,7 @@ namespace ltd
         return {-1, err::not_found};
     }
 
-    ret<int, err::type> cli_arguments::add_argument(char short_opt)
+    ret<int, err::type> cli_flags::add_argument(char short_opt)
     {
         auto [index, err] = get_argument(short_opt);
 
@@ -133,7 +133,7 @@ namespace ltd
         return {index, err};
     }
 
-    err::type cli_arguments::parse_argv()
+    err::type cli_flags::parse_argv()
     {
         for (int i = 1; i < argc; i++) {
             int index = -1;
@@ -174,7 +174,7 @@ namespace ltd
         return err::no_error;
     }
 
-    err::type cli_arguments::bind_values()
+    err::type cli_flags::bind_values()
     {
         for (auto arg : arguments) {
             auto [index, err] = get_index(arg.short_opt);
@@ -214,7 +214,7 @@ namespace ltd
         return err::no_error;
     }
 
-    err::type cli_arguments::parse(int argc, char** argv)
+    err::type cli_flags::parse(int argc, char** argv)
     {
         this->argc = argc;
         this->argv = argv;
@@ -225,12 +225,12 @@ namespace ltd
         return err::no_error;
     }
 
-    size_t cli_arguments::size() const
+    size_t cli_flags::size() const
     {
         return argc;
     }
 
-    void cli_arguments::print_help(size_t indent) const
+    void cli_flags::print_help(size_t indent) const
     {
         std::string indentation;
 
