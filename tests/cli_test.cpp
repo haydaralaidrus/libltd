@@ -7,15 +7,15 @@ auto main(int argc, char** argv) -> int
     test_unit tu;
 
     tu.test([&tu](){
-        tu.expect(true, "Expected true");
+        tu.expect(0, 0);
     });
 
     tu.test([&tu](){
-        tu.expect(true, "Expected true");
+        tu.expect(0.1, 0.1);
     });
 
     tu.test([&tu](){
-        tu.expect(true, "Expected true");
+        tu.expect("true", "true");
     });
     
     tu.run(argc, argv);
