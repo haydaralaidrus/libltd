@@ -97,19 +97,6 @@ namespace ltd
          * @param test_function The test function for the test case.
          */
         void test(std::function<void()> test_function);
-
-        /**
-         * @brief
-         * Expect a condition to be true for testing purpose.
-         * 
-         * @details
-         * Use this function to test a condition. This will determine whether a test is pass or not.
-         * 
-         * @param condition
-         * @param message
-         */
-        void expect(bool condition, const std::string& message);
-
         
         /**
          * @brief
@@ -122,6 +109,30 @@ namespace ltd
          * @param expected_value
          */
         void expect(const std::string& test_value, const std::string& expected_value);
+
+        /**
+         * @brief
+         * Expect an integer value
+         * 
+         * @details
+         * Use this function to test an integer. This will determine whether a test is pass or not.
+         * 
+         * @param test_value
+         * @param expected_value
+         */
+        void expect(int test_value, int expected_value);
+
+        /**
+         * @brief
+         * Expect a float value
+         * 
+         * @details
+         * Use this function to test an float/double. This will determine whether a test is pass or not.
+         * 
+         * @param test_value
+         * @param expected_value
+         */
+        void expect(double test_value, double expected_value);
 
         /**
          * @brief

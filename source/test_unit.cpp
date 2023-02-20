@@ -78,14 +78,6 @@ namespace ltd
 
     }
 
-    void test_unit::expect(bool condition, const std::string& message)
-    {
-        if (condition == false) {
-            fmt::println("%s", message);
-            failed = true;
-        }
-    }
-
     void test_unit::expect(const std::string& test_value, const std::string& expected_value)
     {
         if (verbosity > 0)
@@ -94,6 +86,30 @@ namespace ltd
         if (test_value != expected_value) {
             if (verbosity == 0)
                 fmt::println("Expected: %s, Value: %s", expected_value, test_value);
+            failed = true;
+        }
+    }
+
+    void test_unit::expect(int test_value, int expected_value)
+    {
+        if (verbosity > 0)
+            fmt::println("Expected: %d, Value: %d", expected_value, test_value);
+
+        if (test_value != expected_value) {
+            if (verbosity == 0)
+                fmt::println("Expected: %d, Value: %d", expected_value, test_value);
+            failed = true;
+        }
+    }
+
+    void test_unit::expect(double test_value, double expected_value)
+    {
+        if (verbosity > 0)
+            fmt::println("Expected: %f, Value: %f", expected_value, test_value);
+
+        if (test_value != expected_value) {
+            if (verbosity == 0)
+                fmt::println("Expected: %f, Value: %f", expected_value, test_value);
             failed = true;
         }
     }
