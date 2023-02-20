@@ -16,6 +16,7 @@
  */
 namespace ltd {}
 
+#include "auto_dltr.hpp"
 #include "cli_flags.hpp"
 #include "err.hpp"
 #include "fmt.hpp"

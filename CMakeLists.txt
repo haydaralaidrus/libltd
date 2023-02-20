@@ -5,7 +5,7 @@ project(ltd VERSION 0.0.1)
 
 # Set path variables
 set(ROOT_DIR ${PROJECT_SOURCE_DIR})
-set(INC_DIR ${ROOT_DIR}/include/ltd)
+set(INC_DIR ${ROOT_DIR}/include)
 set(SRC_DIR ${ROOT_DIR}/source)
 set(TEST_DIR ${ROOT_DIR}/tests) 
 
@@ -36,6 +36,11 @@ target_link_libraries(fmt_float ltd)
 add_executable(fmt_string ${TEST_DIR}/fmt_string.cpp)
 target_include_directories(fmt_string PUBLIC ${INC_DIR})
 target_link_libraries(fmt_string ltd)
+
+# Create test executable fmt_string
+add_executable(auto_dltr ${TEST_DIR}/auto_dltr.cpp)
+target_include_directories(auto_dltr PUBLIC ${INC_DIR})
+target_link_libraries(auto_dltr ltd)
 
 enable_testing()
 
