@@ -2,8 +2,8 @@
 #include <cstring>
 #include <algorithm>
 
-#include "../inc/cli_flags.hpp"
-#include "../inc/fmt.hpp"
+#include "../include/ltd/cli_flags.hpp"
+#include "../include/ltd/fmt.hpp"
 
 namespace ltd
 {

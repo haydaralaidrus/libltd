@@ -1,16 +1,17 @@
 cmake_minimum_required(VERSION 3.22)
 
 # Set the project name
-project(libltd VERSION 0.0.1)
+project(ltd VERSION 0.0.1)
 
 # Set path variables
 set(ROOT_DIR ${PROJECT_SOURCE_DIR})
-set(INC_DIR ${ROOT_DIR}/inc)
-set(SRC_DIR ${ROOT_DIR}/src)
-set(TEST_DIR ${ROOT_DIR}/tests)
+set(INC_DIR ${ROOT_DIR}/include/ltd)
+set(SRC_DIR ${ROOT_DIR}/source)
+set(TEST_DIR ${ROOT_DIR}/tests) 
 
 # Add source files
 file(GLOB SOURCES ${SRC_DIR}/*.cpp)
+file(GLOB_RECURSE INCLUDE_FILES ${INC_DIR}/*.hpp)
 
 # Create libltd.a static library
 add_library(ltd STATIC ${SOURCES})
@@ -56,4 +57,17 @@ PROPERTIES PASS_REGULAR_EXPRESSION "-ok-"
 add_test(NAME Fmt-Str COMMAND fmt_string -a)
 set_tests_properties(Fmt-Str
 PROPERTIES PASS_REGULAR_EXPRESSION "-ok-"
+)
+
+# Installation and Deployment
+set_target_properties(ltd
+    PROPERTIES
+    PUBLIC_HEADER "${INCLUDE_FILES}"
+)
+
+install (TARGETS ltd
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+    PUBLIC_HEADER DESTINATION include/ltd
 )

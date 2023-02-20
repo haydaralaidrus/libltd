@@ -1,6 +1,6 @@
-#include "../inc/test_unit.hpp"
-#include "../inc/fmt.hpp"
-#include "../inc/cli_flags.hpp"
+#include "../include/ltd/test_unit.hpp"
+#include "../include/ltd/fmt.hpp"
+#include "../include/ltd/cli_flags.hpp"
 
 using namespace ltd;
 
