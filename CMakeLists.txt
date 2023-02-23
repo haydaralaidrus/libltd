@@ -38,9 +38,9 @@ target_include_directories(fmt_string PUBLIC ${INC_DIR})
 target_link_libraries(fmt_string ltd)
 
 # Create test executable fmt_string
-add_executable(auto_dltr ${TEST_DIR}/auto_dltr.cpp)
-target_include_directories(auto_dltr PUBLIC ${INC_DIR})
-target_link_libraries(auto_dltr ltd)
+add_executable(raii_ptr ${TEST_DIR}/raii_ptr.cpp)
+target_include_directories(raii_ptr PUBLIC ${INC_DIR})
+target_link_libraries(raii_ptr ltd)
 
 enable_testing()
 

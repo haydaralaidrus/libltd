@@ -29,7 +29,7 @@ auto main(int argc, char** argv) -> int
     tu.test([&tu](){
         {
             test *t = new test();
-            auto_dltr<test> tt = wrap_cpp<test>(t);
+            raii_ptr<test> tt = wrap_cpp<test>(t);
             
             tu.expect(test_counter, 1);
         }
@@ -39,11 +39,11 @@ auto main(int argc, char** argv) -> int
 
     tu.test([&tu](){
         {
-            std::vector<auto_dltr<test>> tests;
+            std::vector<raii_ptr<test>> tests;
 
             for (int i=0; i<10; i++) {
                 test *t = new test();
-                auto_dltr<test> tt = wrap_cpp<test>(t);
+                raii_ptr<test> tt = wrap_cpp<test>(t);
                 tests.push_back(std::move(tt));
             }
             
@@ -55,11 +55,11 @@ auto main(int argc, char** argv) -> int
 
     tu.test([&tu](){
         {
-            std::vector<auto_dltr<test>> tests;
+            std::vector<raii_ptr<test>> tests;
 
             for (int i=0; i<1000; i++) {
                 test *t = new test();
-                auto_dltr<test> tt = wrap_cpp<test>(t);
+                raii_ptr<test> tt = wrap_cpp<test>(t);
                 tests.push_back(std::move(tt));
             }
             

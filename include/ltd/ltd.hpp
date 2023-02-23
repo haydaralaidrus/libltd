@@ -16,10 +16,10 @@
  */
 namespace ltd {}
 
-#include "auto_dltr.hpp"
 #include "cli_flags.hpp"
 #include "err.hpp"
 #include "fmt.hpp"
+#include "raii_ptr.hpp"
 #include "std_alias.hpp"
 #include "test_unit.hpp"
 
