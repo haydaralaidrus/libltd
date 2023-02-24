@@ -7,4 +7,9 @@ namespace ltd
         return desc[err_type];
     }
 
+    void err::set_last_error(const std::string& message)
+    {
+        last_error = message;
+    }
+
 } // namespace ltd

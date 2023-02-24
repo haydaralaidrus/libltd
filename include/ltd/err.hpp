@@ -1,6 +1,8 @@
 #ifndef _LTD_INCLUDE_ERR_HPP_
 #define _LTD_INCLUDE_ERR_HPP_
 
+#include <string>
+
 namespace ltd
 {
     /**
@@ -40,6 +42,8 @@ namespace ltd
             "Not implemented"
         };
 
+        static std::string last_error;
+
     public:
         enum type
         {
@@ -56,6 +60,12 @@ namespace ltd
          * Get the null terminated string version of the error code. 
          */
         static const char* to_string(type err_type);
+
+        /**
+         * @brief
+         * Sets the last error message.
+        */
+       static void set_last_error(const std::string& message);
     };
 }
 
