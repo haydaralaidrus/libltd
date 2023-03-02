@@ -34,12 +34,12 @@ namespace ltd
     class err
     {
     private:
-        static constexpr char const *desc[10] =
+        static constexpr char const *desc[12] =
         {
             "No error",             "Null pointer",             "Index out-of-bound",
             "Invalid argument",     "Type conversion failure",  "Not found",
             "Allocation failure",   "Deallocation failure",     "Invalid operation",
-            "Not implemented"
+            "Not implemented",      "Invalid state",            "End of input"
         };
 
         static std::string last_error;
@@ -50,7 +50,7 @@ namespace ltd
             no_error,               null_pointer,               index_out_of_bound,
             invalid_argument,       type_conversion_failure,    not_found,
             allocation_failure,     deallocation_failure,       invalid_operation,
-            not_implemented
+            not_implemented,        invalid_state,              end_of_input
         };
         
         err() = delete;
