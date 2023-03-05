@@ -12,6 +12,11 @@ namespace ltd
         last_error = message;
     }
 
+    std::string err::get_last_error()
+    {
+        return last_error;
+    }
+
     std::string err::last_error;
 
 } // namespace ltd

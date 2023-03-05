@@ -64,8 +64,14 @@ namespace ltd
         /**
          * @brief
          * Sets the last error message.
-        */
+            */
        static void set_last_error(const std::string& message);
+
+        /**
+         * @brief
+         * Read the last error. 
+         */
+       static std::string get_last_error();
     };
 }
 
