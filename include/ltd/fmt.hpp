@@ -38,6 +38,12 @@ namespace ltd
             const char* read_specifier(std::ostream& out, const char* format);
         };
 
+        template<typename T>
+        void osprintf(std::ostream& out, T arg)
+        {
+            out << arg;
+        }
+
         /**
          * @brief
          * Default function for osprintf.
@@ -136,12 +142,33 @@ namespace ltd
 
         /**
          * @brief
+         * Default printf function to print out single object without format
+        */
+        template<typename T>
+        void printf(T arg)
+        {
+            osprintf(std::cout, arg);
+        }
+
+        /**
+         * @brief
          * Function template for printf with carriage return.
          */
         template<typename... Args>
         void println(const char* format, Args... args)
         {
             osprintf(print_state::Next, std::cout, format, args...);
+            std::cout << std::endl;
+        }
+
+        /**
+         * @brief
+         * Default println function to print out single object without format
+        */
+        template<typename T>
+        void println(T arg)
+        {
+            osprintf(std::cout, arg);
             std::cout << std::endl;
         }
 
@@ -160,6 +187,19 @@ namespace ltd
 
         /**
          * @brief
+         * Function template for sprintf with single object and no format.
+         */
+        template<typename T>
+        std::string sprintf(T arg)
+        {
+            std::ostringstream sstream;
+            osprintf(sstream, arg);
+
+            return sstream.str();
+        }
+
+        /**
+         * @brief
          * Function template for printing to string with carriage return.
          */
         template<typename... Args>
@@ -167,6 +207,20 @@ namespace ltd
         {
             std::ostringstream sstream;
             osprintf(print_state::Next, sstream, format, args...);
+            sstream << std::endl;
+
+            return sstream.str();
+        }
+
+        /**
+         * @brief
+         * Function template for sprintln with single object and no format.
+         */
+        template<typename T>
+        std::string sprintln(T arg)
+        {
+            std::ostringstream sstream;
+            osprintf(sstream, arg);
             sstream << std::endl;
 
             return sstream.str();
