@@ -2,7 +2,7 @@
 
 namespace ltd
 {
-    ref_counter::ref_counter() : counter(1)
+    ref_counter::ref_counter() : counter(1UL)
     {
 
     }
