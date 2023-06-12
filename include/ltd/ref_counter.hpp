@@ -31,7 +31,6 @@ namespace ltd
         ref_counter();
 
         // Remove ctors and assignment operator
-        ref_counter(ref_counter& other) = delete;
         ref_counter(const ref_counter& other) = delete;
         ref_counter& operator=(const ref_counter& other) = delete;
 
