@@ -20,6 +20,7 @@ namespace ltd
      */
     class ref_counter
     {
+    public:
         /**
          * @brief
          * Construct a new ref counter object
