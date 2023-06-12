@@ -63,9 +63,9 @@ struct __is_string_helper<std::u8string_view>
 
 template<typename T>
 struct is_string {
-	static constexpr bool value = __is_string_helper<
-		std::remove_cv_t<T>
-	>::value;
+    static constexpr bool value = __is_string_helper<
+        std::remove_cv_t<T>
+    >::value;
 };
 
 template <typename T>
